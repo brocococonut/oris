@@ -1,0 +1,67 @@
+.media-card {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  position: relative;
+  grid-template-areas: "media" "content";
+  border-radius: 0.25rem;
+  z-index: 1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  >img,
+  >video,
+  >object,
+  >.details-container,
+  >.details-container>.card-details {
+    width: 100%;
+  }
+
+  >img:first-child,
+  >video:first-child,
+  >.details-container:first-child,
+  >.details-container:first-child>.card-details:first-child {
+    grid-area: media;
+  }
+
+  >.details-container:not(:first-child),
+  >.details-container:not(:first-child)>.card-details {
+    grid-area: content;
+  }
+
+  .details-container {
+    background-color: var(--th-surface);
+    max-width: 100%;
+    overflow: hidden;
+
+    .card-details {
+      grid-area: content;
+      width: 100%;
+      min-height: 26px;
+      background-color: var(--th-surface);
+
+      >* {
+        min-height: 26px;
+        line-height: 26px;
+      }
+
+      >span,
+      >p {
+        margin: 0 5px;
+        max-width: 100%;
+      }
+
+      &:not(:last-child) {
+        border-bottom: rgba($color: #333, $alpha: 0.1) 1px solid;
+      }
+
+      &.media-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+    }
+  }
+}

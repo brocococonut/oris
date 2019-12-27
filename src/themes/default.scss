@@ -1,0 +1,29 @@
+// Element colours
+$theme-primary: #18a9ff;
+$theme-secondary: #cc00cc;
+
+// Surface colours
+$theme-surface: #333;
+$theme-background: #222;
+
+// Text colours
+$theme-error: #bb0020;
+$theme-on-primary: #ffffff;
+$theme-on-secondary: #ffffff;
+$theme-on-error: #ffffff;
+$theme-on-surface: #ffffff;
+
+html, body {
+  --th-background: #{$theme-background};
+  --th-surface: #{$theme-surface};
+  --th-primary: #{$theme-primary};
+  --th-secondary: #{$theme-secondary};
+  --th-error: #{$theme-error};
+  --th-on-primary: #{$theme-on-primary};
+  --th-on-secondary: #{$theme-on-secondary};
+  --th-on-error: #{$theme-on-error};
+  --th-on-surface: #{$theme-on-surface};
+
+  background: var(--th-background);
+  color: var(--th-on-primary)
+}

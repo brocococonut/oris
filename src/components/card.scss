@@ -1,0 +1,55 @@
+.card {
+  background-color: var(--th-surface);
+  border-radius: 0.25em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  color: var(--th-on-surface);
+  display: inline-block;
+  min-height: 36px;
+  min-width: 50px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+
+  // Define the three card inner containers
+  .card-header,
+  .card-body,
+  .card-footer {
+    // Make sure there's no padding on centered items
+    padding: 8px;
+    display: block;
+    width: 100%;
+    word-wrap: break-word;
+
+    // Only non-last child items get a border
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+    }
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+  .card-header {
+    font-weight: bold;
+    a {
+      // Remove link style
+      &:not(.-rm-ls) {
+        color: inherit;
+
+        &::before {
+          content: '- '
+        }
+        &::after {
+          content: ' -'
+        }
+      }
+    }
+
+    // ?
+    // &> *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(small) {
+    //   margin: 0.6rem;
+    // }
+  }
+}

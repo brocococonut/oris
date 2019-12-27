@@ -1,0 +1,116 @@
+/**
+Unlike standard grids, we don't use the standard 12 columns on small, medium
+and large devices. We instead have our defaults set to:
+  small:  1-2 (.cs1 - .cs2)
+  medium: 1-4 (.cm1 - .cm4)
+  large:  1-6 (.cl1 - .cl6)
+
+Each is a percentage derived from 100%/n
+As with most grids, ours is mobile up. This means you
+can just include .cs2 to have something be a 100% sized element
+on all breakpoints, or even just .cs1 to have it be 50% on all devices.
+
+You can offset elements by a margin of n% as well using .o{size}{n}
+Some restrictions are put in place to ensure you don't scroll off
+page though, these are created using the filter:
+  col + offset <= max cols
+An example would be the .cl* class list. If I had a column size of
+  .cl2
+then the only available offsets would be .ol1-4 as the maximum number
+of columns in the large class list is 6. Similarly, the class .cs2 wouldn't
+have any offsets
+
+The standard structure of a grid is the following:
+<div class="grid-cont">
+  <div class="grid">
+    <div class="cs2 cm2 cl4 om1 ol1">
+      <!-- ... -->
+    </div>
+  </div>
+</div>
+
+The above example would give something that's:
+  100% width on small
+  50% width on medium with an offset of 25%
+  50% width on large with an offset of 25%
+As the last two are the same, you could simplify the class list to just be
+  .cs2.cm2.om1
+
+Grids do look better with the grid-cont element wrapped in a .container
+though.
+*/
+@import "../abstracts/functions.scss";
+@import "../abstracts/mixins.scss";
+@import "../abstracts/variables.scss";
+
+$grid-gutter: 0.8rem;
+
+$grid-name-offset: 'o';
+$grid-name-column: 'c';
+
+$grid-sml-class: 's';
+$grid-sml-count: 2;
+
+$grid-med-class: 'm';
+$grid-med-count: 4;
+
+$grid-lge-class: 'l';
+$grid-lge-count: 6;
+
+@mixin grid-sizes($max: 1, $className: "") {
+  @for $i from 1 through $max {
+    .#{$grid-name-column}#{$className}#{$i} {
+      flex: 0 0 #{mult(div(100, $max), $i)}#{'%'};
+      max-width: #{mult(div(100, $max), $i)}#{'%'};
+    }
+    @for $ii from 0 through $max {
+      @if $i + $ii <= $max {
+        .#{$grid-name-column}#{$className}#{$i} {
+          &.#{$grid-name-offset}#{$className}#{$ii}{
+            margin-left: #{mult(div(100, $max), $ii)}#{'%'};
+          }
+        }
+      }
+    }
+  }
+};
+
+.grid-cont > .grid {
+  margin-left: 0rem;
+}
+
+.grid {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-left: -$grid-gutter;
+  padding: div($grid-gutter, 2);
+
+  #{makeList(".c#{$grid-sml-class}", $grid-sml-count)},
+  #{makeList(".c#{$grid-med-class}", $grid-med-count)},
+  #{makeList(".c#{$grid-lge-class}", $grid-lge-count)} {
+    flex: 0 0 #{div(100, 2)}#{'%'};
+    padding: #{div($grid-gutter, 2)};
+    max-width: #{div(100, 2)}#{'%'};
+    transition: flex 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+                max-width 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    &>* {
+      max-width: 100%;
+    }
+  }
+
+  @include grid-sizes($grid-sml-count, $grid-sml-class);
+}
+
+@media (min-width: $media-size-tablet) {
+  .grid {
+    @include grid-sizes($grid-med-count, $grid-med-class);
+  }
+}
+
+@media (min-width: $media-size-desktop) {
+  .grid {
+    @include grid-sizes($grid-lge-count, $grid-lge-class);
+  }
+}
