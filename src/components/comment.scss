@@ -1,0 +1,171 @@
+/**
+ * The standard comment structure has nesting with support for up to
+ * 7 layers of child comments.
+ * Upon hover, the sidebar of the comment tree that's being hovered over
+ * will become dashed to easily track comment threads.
+ * New comments will have their sidebar colour changed to blue instead of
+ * the standard grey gradient.
+ * 
+ * It's recommended that comments are just put in a standard container element
+ * for proper padding. Apart from that, there aren't any particular
+ * requirements for comments to be displayed correctly.
+ * 
+ * Comment structure:
+ * <div class="comment">
+ *   <div class="content">
+ *     <!-- Profile icon -->
+ *     <a href="/profile/link" class="avatar">
+ *       <img src="/avatar/url" alt="">
+ *     </a>
+ *     
+ *     <!-- Who the comment is by -->
+ *     <span class="username">Username</span>
+ * 
+ *     <!-- Markdown that has been rendered -->
+ *     <div data-before="" class="markdown-rendered">
+ *       <p>Example comment text</p>
+ *     </div>
+ *     
+ *     <!-- Date formatted with the humanizeDateString function listed below -->
+ *     <i class="date">a few seconds ago (11/Dec/2018 20:59:08)</i>
+ * 
+ *     <!-- Comment actions, can be increased/extended as needed -->
+ *     <div class="actions">
+ *       <div class="action-container"><span>reply</span></div>
+ *     </div>
+ *   </div>
+ *   <!-- Child comments - Recurses up to 7 layers-->
+ *   <div class="children">
+ *     <div class="comment">
+ *         <!-- ... -->
+ *     </div>
+ *   </div>
+ * </div>
+ */
+.comment {
+  display: inline-block;
+  height: fit-content;
+  width: 100%;
+  box-sizing: border-box;
+  
+  border-left: solid 0.2rem;
+  border-left-color: var(--th-on-surface);
+
+  &:hover {
+    border-left-style: dashed;
+    border-left-width: 0.2rem;
+  }
+
+  &.new {
+    border-left-color: var(--th-primary);
+  }
+
+  .content {
+    box-sizing: border-box;
+    display: grid;
+    grid-template:
+              "avatar  username"
+              "avatar  comment-text"
+              "avatar  date"
+              "avatar  links"
+              "avatar  actions"
+              "avatar  editor";
+
+    grid-template-columns: 36px 1fr;
+
+    &+* {
+      margin-top: 20px;
+    }
+    &:hover {
+      &>.actions {
+        pointer-events: unset;
+        opacity: 1;
+      }
+    }
+    // First child margin
+    &:first-child {
+      margin-left: 10px;
+    }
+    .blank {
+      grid-area: blank;
+    }
+
+    // Avatar/Avatar link sizing
+    .avatar,
+    a.avatar img {
+      grid-area: avatar;
+      width: 36px;
+      height: 36px;
+      max-width: 36px;
+    }
+
+    span.username, a.username, i.date, .comment-text, .actions {
+      margin-left: 10px;
+    }
+
+    span.username, a.username, i.date {
+      height: 36px;
+      line-height: 36px;
+    }
+
+    // Username/Username link styling
+    span.username, a.username {
+      font-weight: 600;
+      font-size: 1.2rem;
+      grid-area: username;
+    }
+
+    // Date styling
+    i.date {
+      grid-area: date;
+      font-weight: 100;
+      font-size: smaller;
+      justify-self: right;
+
+      &:before{
+        content: ": "
+      }
+      &:after {
+        content: " :"
+      }
+    }
+
+    .comment-text {
+      grid-area: comment-text;
+      font-size: 0.95rem;
+    }
+
+    .actions {
+      grid-area: actions;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity linear 0.1s;
+
+      >.action-container {
+        display: inline;
+        border-right: solid rgba($color: #333333, $alpha: 0.8) 2px;
+        padding-right: 5px;
+        
+        &:link,
+        &:visited {
+          text-decoration: none;
+          color: unset;
+        }
+        &:last-child {
+          border-right: none;
+          padding-right: none
+        }
+
+        &>* {
+          height: 15px;
+          line-height: 15px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .children {
+    margin-left: 15px;
+  }
+}

@@ -1,3 +1,24 @@
+/**
+ * Standard card element
+ * 
+ * The general structure of a card is as follows:
+ * <div class="card">
+ *   <div class="card-header">
+ *     <h1-6>Title</h1-6>
+ *   </div>
+ *   <div class="card-body">
+ *     <p>Contents</p>
+ *   </div>
+ *   <div class="card-footer">
+ *     <p>Footer</p>
+ *   </div>
+ * </div>
+ * 
+ * Cards can have any number of card-header, body, or footer components in
+ * any order. For the best effect, h4 is used in the card-header in most
+ * places around the site.
+ *
+ */
 .card {
   background-color: var(--th-surface);
   border-radius: 0.25em;
@@ -20,6 +41,7 @@
     display: block;
     width: 100%;
     word-wrap: break-word;
+    font-size: 1rem;
 
     // Only non-last child items get a border
     &:not(:last-child) {

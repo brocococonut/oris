@@ -1,17 +1,24 @@
 // Element colours
 $theme-primary: #18a9ff;
 $theme-secondary: #cc00cc;
+$theme-nav: $theme-primary;
 
 // Surface colours
 $theme-surface: #333;
 $theme-background: #222;
+$theme-nav-background: $theme-surface;
 
 // Text colours
 $theme-error: #bb0020;
-$theme-on-primary: #ffffff;
-$theme-on-secondary: #ffffff;
-$theme-on-error: #ffffff;
-$theme-on-surface: #ffffff;
+$theme-on-primary: #efefef;
+$theme-on-secondary: #efefef;
+$theme-on-error: #efefef;
+$theme-on-surface: #efefef;
+$theme-on-background: $theme-on-surface;
+
+// Sizes
+$theme-nav-width: 200px;
+$theme-nav-el-height: 48px;
 
 html, body {
   --th-background: #{$theme-background};
@@ -23,6 +30,12 @@ html, body {
   --th-on-secondary: #{$theme-on-secondary};
   --th-on-error: #{$theme-on-error};
   --th-on-surface: #{$theme-on-surface};
+  --th-on-background: #{$theme-on-background};
+
+  --th-nav-width: #{$theme-nav-width};
+  --th-nav-el-height: #{$theme-nav-el-height};
+  --th-nav-color: #{$theme-nav};
+  --th-nav-background: #{$theme-nav-background};
 
   background: var(--th-background);
   color: var(--th-on-primary)

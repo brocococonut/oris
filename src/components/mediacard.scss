@@ -1,3 +1,23 @@
+/* Standard Media Card:
+ *
+ * <div class="card media">
+ *   <img src="https://via.placeholder.com/300x300" alt="">
+ *   <div class="details-container">
+ *     <div class="card-details media-title">
+ *       <span>Here'll be the title for the media card</span>
+ *     </div>
+ *     <div class="card-details">
+ *       <p>Any extra content/descriptions you want</p>
+ *     </div>
+ *   </div>
+ * </div>
+ * 
+ * A media card can have any number of card-details elements inside it, the
+ * media-title does typically have to be at the start though.
+ * Media cards also have compatibility with the HTML5 <video> and 
+ * <object> tags instead of images if you'd rather have a video media-card.
+ */
+
 .media-card {
   width: 100%;
   max-width: 100%;
@@ -32,6 +52,7 @@
 
   .details-container {
     background-color: var(--th-surface);
+    color: var(--th-on-surface);
     max-width: 100%;
     overflow: hidden;
 

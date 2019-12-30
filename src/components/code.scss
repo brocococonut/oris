@@ -1,0 +1,10 @@
+pre, code {
+  font-family: 'Roboto Mono', monospace;
+  overflow-x: scroll;
+  font-size: inherit;
+}
+
+pre, :not(pre) > code {
+  box-shadow: inset 0 0 4px 3px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+}

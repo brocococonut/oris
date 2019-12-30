@@ -1,0 +1,129 @@
+/**
+ * Shows a ToS format in a simplified but detailed view.
+ * We've used an example vue component to show how to structure things.
+ * The structure is as follows:
+ * <div class="card-body">
+ *   <div class="tos-entry">
+ *     <span class="tos-title">ToS Entry Title</span>
+ *     <VueMarkdown :str="entry.content" />
+ *     <i class="tos-exceptions">Exceptions to this rule: {{entry.exceptions}}</i>
+ *     <!-- .tos-entry children go here and are recursive -->
+ *     <!-- e.g. <TosEntry v-for="child in entry.children" :key="child._id" :entry="child" /> -->
+ *     <div class="tos-penalties">
+ *       <span class="tos-penalty-text">Penalties of breaking this rule:</span>
+ *       <div>
+ *         <VueMarkdown v-if="penalty.content" :str="penalty.content" />
+ *       </div>
+ *       <div>
+ *         <VueMarkdown v-if="penalty.content" :str="penalty.content" />
+ *       </div>
+ *       <!-- ... -->
+ *     </div>
+ *   </div>
+ * </div>
+ */
+@media print {
+  .tos-entry-root {
+    page-break-inside: avoid;
+  }
+}
+
+.tos-entry {
+  display: block;
+  background-color: rgba(200, 200, 200, 0.1);
+  box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.3);
+  padding: 10px;
+  margin-left: 32px;
+  margin-top: 8px;
+  counter-increment: lvl1-tos;
+  &::before {
+    position: absolute;
+    margin-left: -50px;
+    font-size: 28px;
+    width: 32px;
+    text-align: right;
+    content: counter(lvl1-tos, decimal) ".";
+  }
+
+  .tos-title {
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .tos-content {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .tos-entry .tos-content,
+  .tos-content p {
+    font-size: 15px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  .tos-exceptions,
+  .tos-penalties {
+    font-style: italic;
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-left: 15px;
+  }
+  .tos-exceptions::before,
+  .tos-penalties .tos-penalty-text::before {
+    content: "– ";
+    font-weight: 400;
+  }
+  .tos-penalties {
+    margin-top: 10px;
+    .tos-penalty-text {
+      margin-top: 5px;
+      display: block;
+    }
+    .tos-penalty {
+      display: block;
+      height: auto;
+      margin-left: 20px;
+      margin-top: 5px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 18px;
+      font-style: normal;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: normal;
+      background-color: #303030;
+      color: white;
+      box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.3);
+    }
+  }
+
+  .tos-entry {
+
+    /**
+     * level 3 ToS entries
+     */
+    counter-increment: lvl2-tos;
+    &::before {
+      line-height: 16px;
+      position: absolute;
+      margin-left: -30px;
+      font-size: 20px;
+      text-align: right;
+      width: 20px;
+      content: counter(lvl2-tos, lower-latin) ".";
+    }
+
+    .tos-entry {
+      counter-increment: lvl3-tos;
+      &::before {
+        line-height: 16px;
+        position: absolute;
+        width: 25px;
+        margin-left: -40px;
+        font-size: 15px;
+        text-align: right;
+        font-weight: 300;
+        content: counter(lvl3-tos, lower-roman) ".";
+      }
+    }
+  }
+}

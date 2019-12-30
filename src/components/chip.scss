@@ -1,3 +1,27 @@
+/**
+ * Chips are used for anything from tags to user icons. Tags have a couple
+ * custom classes that have also been lumped in here for ease of access.
+ * 
+ * A standard chip is pretty simple, it looks like this:
+ * <div class="chip">
+ *   Chip text goes here
+ *   <i class="icon close_cust">close</i>
+ * </div>
+ * 
+ * A chip that has an image off to the left would look something like this:
+ * <div class="chip">
+ *   <img src="/path/to/image.png">
+ *   Chip text goes here
+ *   <i class="icon close_cust">close</i>
+ * </div>
+ * 
+ * The close button is optional, and extra styling for image outlines can be
+ * applied to the image with the classes: .ring-red,
+ *                                        .ring-blue,
+ *                                        .ring-yellow,
+ *                                        .ring-green
+ */
+
 $chip-bg-color: #e4e4e4 !default;
 $chip-border-color: #9e9e9e !default;
 $chip-selected-color: #26a69a !default;
