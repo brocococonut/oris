@@ -20,7 +20,7 @@ $theme-on-background: $theme-on-surface;
 $theme-nav-width: 200px;
 $theme-nav-el-height: 48px;
 
-html, body {
+:root {
   --th-background: #{$theme-background};
   --th-surface: #{$theme-surface};
   --th-primary: #{$theme-primary};
@@ -36,7 +36,9 @@ html, body {
   --th-nav-el-height: #{$theme-nav-el-height};
   --th-nav-color: #{$theme-nav};
   --th-nav-background: #{$theme-nav-background};
+}
 
+html, body {
   background: var(--th-background);
   color: var(--th-on-primary)
 }

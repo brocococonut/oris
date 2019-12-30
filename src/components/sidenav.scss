@@ -129,6 +129,10 @@ nav.side-nav {
   overflow-y: scroll;
   scrollbar-width: none;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   a {
     color: var(--th-nav-color)
   }
