@@ -69,7 +69,7 @@ input.lock-nav[type="checkbox"] {
           }
 
           i.icon {
-            background-color: hsla(0, 0%, 39%, .1);
+            background-color: rgba(0, 0, 0, 0.2);
           }
         }
 
@@ -131,10 +131,6 @@ nav.side-nav {
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  a {
-    color: var(--th-nav-color)
   }
 
   &:hover {
@@ -325,5 +321,11 @@ input.lock-nav[type="checkbox"]:checked+label.lock-nav-tog+nav.side-nav {
         }
       }
     }
+  }
+}
+
+.lock-nav, nav.side-nav {
+  h1, h2, h3, h4, h5, h6, span, p, i {
+    color: var(--th-nav-color)
   }
 }

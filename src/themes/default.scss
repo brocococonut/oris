@@ -1,11 +1,11 @@
 // Element colours
-$theme-primary: #18a9ff;
+$theme-primary: #DBB4FD;
 $theme-secondary: #cc00cc;
 $theme-nav: $theme-primary;
 
 // Surface colours
-$theme-surface: #333;
-$theme-background: #222;
+$theme-surface: #353535;
+$theme-background: #252525;
 $theme-nav-background: $theme-surface;
 
 // Text colours
@@ -39,6 +39,5 @@ $theme-nav-el-height: 48px;
 }
 
 html, body {
-  background: var(--th-background);
-  color: var(--th-on-primary)
+  background: var(--th-background)
 }
