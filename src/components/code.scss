@@ -1,6 +1,7 @@
 pre, code {
   font-family: 'Roboto Mono', monospace;
-  overflow-x: scroll;
+  white-space: pre-wrap;
+  word-wrap: normal;
   font-size: inherit;
 }
 
