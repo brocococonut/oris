@@ -55,7 +55,7 @@
   }
 
   .details-container {
-    background-color: var(--th-surface);
+    background: var(--th-surface);
     color: var(--th-on-surface);
     max-width: 100%;
     overflow: hidden;
@@ -64,7 +64,7 @@
       grid-area: content;
       width: 100%;
       min-height: 26px;
-      background-color: var(--th-surface);
+      background: var(--th-surface);
 
       >* {
         min-height: 26px;

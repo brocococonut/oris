@@ -1,0 +1,27 @@
+{
+  "name": "oris",
+  "version": "1.0.0",
+  "description": "A custom css/scss framework",
+  "main": "src/main.scss",
+  "scripts": {
+    "build": "node-sass src/main.scss --precision=6 -q --output-style=compressed > dist/oris.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brocococonut/oris.git"
+  },
+  "keywords": [
+    "scss",
+    "framework",
+    "css"
+  ],
+  "author": "Jake Lees <@brocococonut>",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/brocococonut/oris/issues"
+  },
+  "homepage": "https://github.com/brocococonut/oris#readme",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  }
+}
